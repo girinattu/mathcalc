@@ -7,7 +7,7 @@ services:
     environment:
       DATABASE_URL: "postgres://postgres:@postgres:5432/VishyApp"
     extra_hosts:
-      localhost: 10.81.37.217
+      localhost: 9ae27bb1-223b-4e69-bf6c-aff1de4f7c98
 
   web:
     build: .
