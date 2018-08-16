@@ -1,0 +1,93 @@
+<h1 style="color:blue;">Welcome to Vishy's Math Test</h1>
+
+
+<style>
+  .square {
+    height: 300px;
+    width: 300px;
+    background-color: #999;
+    border: outset;
+    font-size: 300px;
+    font-stretch: normal;
+    margin: auto;
+  }
+
+  .button {
+    height: 100px;
+    width: 300px;
+    background-color: #099;
+    border: outset;
+    font-size: 100px;
+    font-stretch: inherit;
+    margin: inherit;
+  }
+
+  .answer {
+    height: 300px;
+    width: 600px;
+    background-color: #999;
+    border: outset;
+    font-size: 300px;
+    font-stretch: normal;
+    margin: auto;
+  }
+
+  .element1 {
+    display:inline-block;margin-right:10px;
+  }
+  .centre {
+    display:block;scroll-snap-margin-bottom:10px;
+  }
+  .mather {
+    height: 300px;
+    width: 300px;
+    background-color: #789;
+    font-size: 300px;
+    font-stretch: normal;
+  }
+
+</style>
+<script type = "text/javascript">
+function checkResult(){
+   hideImages()
+ var num1=  document.getElementById('num1').getAttribute('value');
+ var num2 = document.getElementById('num2').getAttribute('value');
+ var actualRes = document.getElementById('result').value;
+ var expectedRes = +num1 + +num2;
+ if(actualRes == expectedRes){
+     clearRightImage()
+     setTimeout(function(){
+         location.reload();
+     }, 3000);
+ }
+ else {
+    clearWrongImage()
+ }
+
+}
+
+function clearWrongImage(){
+    document.getElementById('wrong').removeAttribute("hidden");
+}
+function clearRightImage(){
+    document.getElementById('right').removeAttribute("hidden");
+}
+function hideImages() {
+    document.getElementById('wrong').setAttribute("hidden", true);
+    document.getElementById('right').setAttribute("hidden", true);
+}
+
+</script>
+
+<div class="square element1" id="num1" value="<%= @random1 %>" ><%= @random1 %></div>
+  <div class="mather element1" id="oper" value="+">+</div>
+<div class="square element1" id="num2" value="<%= @random2 %>"><%= @random2 %></div>
+<div class="mather element1" id="equal">=</div>
+<p>
+<input class="answer element1" id="result" onclick="this.value=''" value=""/>
+
+<button id="button" class="button" value="Check" onclick="checkResult()">Check</button>
+  <img src="/assets/correct.png" height="200" width="200" id="right" hidden/>
+  <img src="/assets/wrong.png"  height="200" width="200"  id="wrong" hidden/>
+
+</p>
