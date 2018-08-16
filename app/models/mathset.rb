@@ -1,0 +1,2 @@
+class Mathset < ApplicationRecord
+end
