@@ -15,6 +15,17 @@ ActiveRecord::Schema.define(version: 2018_08_14_200800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "mathquest", primary_key: "qid", id: :serial, force: :cascade do |t|
+    t.integer "firstval", null: false
+    t.string "mathoper"
+    t.integer "secondval", null: false
+    t.integer "resultval", null: false
+    t.boolean "iscorrect", null: false
+    t.datetime "starttime", null: false
+    t.datetime "endtime", null: false
+    t.index ["qid"], name: "mathquest_qid_uindex", unique: true
+  end
+
   create_table "mathquests", force: :cascade do |t|
     t.integer "firstval", null: false
     t.string "mathoper", null: false
@@ -24,9 +35,18 @@ ActiveRecord::Schema.define(version: 2018_08_14_200800) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "mathset", primary_key: "testid", id: :serial, force: :cascade do |t|
+    t.integer "rights", null: false
+    t.integer "total", null: false
+    t.datetime "starttime", null: false
+    t.datetime "endtime", null: false
+    t.index ["testid"], name: "mathset_testid_uindex", unique: true
+  end
+
   create_table "mathsets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "mathquest", "mathset", column: "qid", primary_key: "testid", name: "mathquest_mathset_testid_fk"
 end
